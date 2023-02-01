@@ -18,7 +18,6 @@ router.route('/add').post((req,res)=>{
     
         categories.save()
             .then(template=>{
-                fetchMovies(socket)
                   res.json(categories._id)
             })
             .catch(err=>{
@@ -41,6 +40,14 @@ router.route('/:id').get((req,res)=>{
         console.log(res.json(webs))
         res.send(webs)
     });
+});
+
+//Delete selected product
+router.route('/:id').delete((req,res)=>{
+    console.log("cdsdcsdcsc")
+    Categories.findByIdAndDelete(req.params.id)
+        .then(cart=>res.json('deleted'))
+        .catch(err=>res.status(400).json('Error: '+err));
 });
 
 
