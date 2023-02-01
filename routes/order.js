@@ -66,10 +66,18 @@ router.route('/add').post((req,res)=>{
 //get categories by ID
 router.route('/:id').get((req,res)=>{
 
-    var data=Orders.find({id:req.params.id}).then(webs=>{
+    var data=Orders.findOne({id:req.params.id}).then(webs=>{
         // console.log(res.json(webs))
         res.send(webs)
     });
 });
+
+
+router.get("/",async function(req,res){
+    Orders.find()
+    .then(category=>res.json(category))
+    .catch(err=>res.status(400).json('Error: '+err));
+
+})
 
 module.exports = router;
