@@ -62,8 +62,8 @@ router.route('/:id').get((req,res)=>{
 });
 
 router.route('/single/:item_id').get((req,res)=>{
-
-    var data=Items.findOne({id:req.params.item_id}).then(webs=>{
+console.log(req.params.item_id)
+    var data=Items.findOne({_id:req.params.item_id}).then(webs=>{
         // console.log(res.json(webs))
         res.send(webs)
     });
